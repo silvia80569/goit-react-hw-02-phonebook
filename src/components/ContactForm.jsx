@@ -1,28 +1,26 @@
-import { render } from "@testing-library/react";
-import React, { Component } from "react";
-
+import React, { Component } from 'react';
+import styles from './ContactForm.module.css';
 export default class ContactForm extends Component {
-
   state = {
     name: '',
-    number: ''
+    number: '',
   };
 
-  handleChange = (event) => {
+  handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
     this.props.onAddContact(this.state.name, this.state.number);
     this.setState({ name: '', number: '' });
   };
-  
+
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className={styles.form}>
           <input
             type="text"
             name="name"
@@ -41,7 +39,9 @@ export default class ContactForm extends Component {
             value={this.state.number}
             onChange={this.handleChange}
           />
-          <button type="submit">Add Contact</button>
+          <button type="submit" className={styles.button}>
+            Add Contact
+          </button>
         </form>
       </div>
     );
